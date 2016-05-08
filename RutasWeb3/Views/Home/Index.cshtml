@@ -1,0 +1,52 @@
+﻿@model RutasWeb3.Models.View
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model == null)
+{
+    <br />
+    <h4>Carga de nodos</h4>
+
+    using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <fieldset class="form-group">
+            <input type="file" id="jsonNodos" name="jsonNodos" required />
+            <small class="text-muted">Seleccione el archivo json con la información de los nodos</small>
+        </fieldset>
+        <input type="submit" value="Procesar" class="btn btn-primary btn-block" />
+    }
+}
+else
+{
+    <br />
+    <h4>Resultados</h4>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Algoritmo de Fuerza Bruta
+            </div>
+            <div class="panel-body">
+                <p>Camino óptimo: @Model.fbBestRoute.selectedRoute</p>
+                <p>Distancia: @Model.fbBestRoute.distance</p>
+            </div>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                Algoritmo de Dijkstra
+            </div>
+            <div class="panel-body">
+                <p>Camino óptimo: @Model.dBestRoute.selectedRoute</p>
+                <p>Distancia: @Model.dBestRoute.distance</p>
+            </div>
+        </div>
+    </div>
+    <br />
+
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
